@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: delivery-service-app
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      postgres:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: delivery-service-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: delivery_service
+      POSTGRES_USER: delivery_user
+      POSTGRES_PASSWORD: delivery_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U delivery_user -d delivery_service"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

@@ -1,0 +1,23 @@
+{
+    "name": "pet/delivery-service",
+    "type": "project",
+    "description": "Training Laravel REST API with a clean architecture style structure.",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^10.10",
+        "laravel/sanctum": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
