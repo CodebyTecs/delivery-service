@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table): void {
             $table->foreignId('user_id')
-                ->nullable()
                 ->after('id')
                 ->constrained()
                 ->cascadeOnDelete();

@@ -8,10 +8,22 @@ services:
       - .:/var/www/html
     ports:
       - "8000:8000"
+    environment:
+      APP_NAME: "Delivery Service"
+      APP_ENV: local
+      APP_KEY: base64:q7w6P+JD3TQlthJ0CGUwPoHlICjfkAxiRGYnKVgLBVk=
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: delivery_service
+      DB_USERNAME: delivery_user
+      DB_PASSWORD: delivery_password
     depends_on:
       postgres:
         condition: service_healthy
-    command: php artisan serve --host=0.0.0.0 --port=8000
+    command: sh -c "test -f vendor/autoload.php || composer install; php artisan serve --host=0.0.0.0 --port=8000"
     tty: true
     stdin_open: true
 
