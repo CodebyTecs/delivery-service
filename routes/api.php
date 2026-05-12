@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/health', function () {
@@ -7,3 +8,5 @@ Route::get('/health', function () {
         'status' => 'ok',
     ]);
 });
+
+Route::post('/orders', [OrderController::class, 'store']);
