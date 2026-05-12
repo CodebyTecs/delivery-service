@@ -1,7 +1,7 @@
 {
     "name": "pet/delivery-service",
     "type": "project",
-    "description": "Training Laravel REST API with a clean architecture style structure.",
+    "description": "Training Laravel REST API for delivery order management.",
     "license": "MIT",
     "require": {
         "php": "^8.2",
