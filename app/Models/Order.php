@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
@@ -21,6 +22,7 @@ class Order extends Model
     private const PRICE_PER_KG = 120;
 
     protected $fillable = [
+        'user_id',
         'sender_name',
         'recipient_name',
         'origin_city',
@@ -39,5 +41,10 @@ class Order extends Model
     public static function calculatePrice(float $weight): float
     {
         return round($weight * self::PRICE_PER_KG, 2);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
